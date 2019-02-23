@@ -1,0 +1,22 @@
+---
+galaxy_info:
+  role_name: template
+  author: Haydar Ciftci
+  description: Ansible role template
+  license: MIT
+  min_ansible_version: 2.4
+  github_branch: master
+
+  platforms:
+    - name: EL
+      versions:
+        - 7
+    - name: Ubuntu
+      versions:
+        - bionic
+
+  galaxy_tags:
+    - exmaple
+    - template
+
+dependencies: []
