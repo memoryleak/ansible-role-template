@@ -1,6 +1,6 @@
 [![Build Status](https://api.travis-ci.org/memoryleak/ansible-role-template.svg?branch=master)](https://travis-ci.org/memoryleak/ansible-role-template)
 
-memoryleak.tempalte
+memoryleak.template
 ===================
 
 Template role to base new roles on.
