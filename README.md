@@ -27,6 +27,19 @@ Example Playbook
       roles:
          - { role: memoryleak.template }
 
+Testing
+-------
+
+Setup:
+
+    virtualenv .venv
+    source .venv/bin/activate
+    pip install -r requirements.txt
+
+Execution:
+	
+	molecule test
+
 License
 -------
 
