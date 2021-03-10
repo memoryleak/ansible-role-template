@@ -1,5 +1,3 @@
-[![Build Status](https://api.travis-ci.org/memoryleak/ansible-role-template.svg?branch=master)](https://travis-ci.org/memoryleak/ansible-role-template)
-
 memoryleak.template
 ===================
 
