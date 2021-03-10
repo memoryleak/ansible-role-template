@@ -1,0 +1,7 @@
+---
+- name: Converge
+  hosts: all
+  tasks:
+    - name: "Include memoryleak.template"
+      include_role:
+        name: "memoryleak.template"

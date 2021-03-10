@@ -1,7 +1,16 @@
 memoryleak.template
 ===================
 
-Template role to base new roles on.
+Template role to base new roles on. The tasks and variable files are included in the following order:
+
+	vars/*-[Linux|Darwin|...].yml
+	vars/*-[RedHat|Debian|...].yml
+	vars/*-[Fedora|CentOS|...].yml
+	
+	tasks/*-[Linux|Darwin|...].yml
+	tasks/*-[RedHat|Debian|...].yml
+	tasks/*-[Fedora|CentOS|...].yml
+	
 
 Requirements
 ------------
