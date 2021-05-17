@@ -45,3 +45,9 @@
 
 - debug:
     var: name
+
+- debug:
+    var: ansible_distribution
+
+- debug:
+    var: ansible_distribution_version
