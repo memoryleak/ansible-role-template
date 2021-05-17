@@ -43,11 +43,7 @@
   loop_control:
     loop_var: tasks_file
 
-- debug:
-    var: name
-
-- debug:
-    var: ansible_distribution
-
-- debug:
-    var: ansible_distribution_version
+- name: "Print environment variables"
+  debug:
+    msg: "Hello"
+  become: true

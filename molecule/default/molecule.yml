@@ -34,6 +34,18 @@ platforms:
     user: ansible
     password: ansible
 
+  - name: ansible_ubuntu1804_server
+    instance: ansible_ubuntu1804_server
+    address: 192.168.21.106
+    user: ansible
+    password: ansible
+
+  - name: ansible_ubuntu2004_server
+    instance: ansible_ubuntu2004_server
+    address: 192.168.21.73
+    user: ansible
+    password: ansible
+
 provisioner:
   name: ansible
 verifier:

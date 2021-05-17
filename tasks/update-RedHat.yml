@@ -1,0 +1,9 @@
+---
+- name: Update all packages
+  yum:
+    name: '*'
+    state: latest
+  tags:
+    - yum
+    - update
+  become: true

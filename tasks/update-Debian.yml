@@ -1,0 +1,12 @@
+---
+- name: Update all packages
+  apt:
+    autoclean: true
+    autoremove: true
+    name: '*'
+    state: latest
+    update_cache: true
+  tags:
+    - apt
+    - update
+  become: true
