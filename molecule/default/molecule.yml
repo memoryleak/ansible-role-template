@@ -1,21 +1,31 @@
 ---
 dependency:
   name: galaxy
+  options:
+    ignore-certs: True
+    ignore-errors: True
+    role-file: requirements.yml
+    requirements-file: collections.yml
+
 driver:
   name: docker
+
 platforms:
-  - name: centos
+  - name: centos7
+    image: docker.io/pycontribs/centos:7
+
+  - name: centos8
     image: docker.io/pycontribs/centos:8
-    pre_build_image: true
+
   - name: ubuntu
     image: docker.io/pycontribs/ubuntu:latest
-    pre_build_image: true
+
   - name: opensuse
     image: docker.io/pycontribs/opensuse:latest
-    pre_build_image: true
+
   - name: fedora
     image: docker.io/pycontribs/fedora
-    pre_build_image: true
+
 provisioner:
   name: ansible
 verifier:

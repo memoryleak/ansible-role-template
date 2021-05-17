@@ -1,0 +1,25 @@
+---
+dependency:
+  name: galaxy
+  options:
+    ignore-certs: True
+    ignore-errors: True
+    role-file: requirements.yml
+    requirements-file: collections.yml
+
+driver:
+  name: vagrant
+  provider:
+    # Can be any supported provider (VBox, Parallels, libvirt, etc)
+    name: libvirt
+
+platforms:
+  - name: instance
+    box: fedora/32-cloud-base
+    memory: 512
+    cpus: 1
+
+provisioner:
+  name: ansible
+verifier:
+  name: ansible

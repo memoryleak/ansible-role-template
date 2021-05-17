@@ -1,5 +1,6 @@
 ---
 galaxy_info:
+  namespace: memoryleak
   role_name: template
   author: Haydar Ciftci
   description: Ansible role template

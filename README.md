@@ -22,10 +22,22 @@ Role Variables
 
 None
 
-Dependencies
-------------
+Dependencies - PIP
+------------------
 
-None
+	ansible
+	docker
+	molecule[docker]
+	molecule-vagrant
+	python-vagrant
+
+Dependencies - Packages
+-----------------------
+
+	docker
+	vagrant
+	vagrant-libvirt
+	rubygem-rexml
 
 Example Playbook
 ----------------
@@ -38,14 +50,16 @@ Testing
 -------
 
 Setup:
-
+------
     virtualenv .venv
     source .venv/bin/activate
     pip install -r requirements.txt
+	sudo dnf install docker vagrant	vagrant-libvirt	rubygem-rexml
 
 Execution:
+----------
 	
-	molecule test
+	molecule converge
 
 License
 -------
