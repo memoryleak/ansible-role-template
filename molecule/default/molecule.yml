@@ -2,49 +2,23 @@
 dependency:
   name: galaxy
 driver:
-  name: delegated
+  name: docker
 platforms:
-  - name: ansible_centos7_server
-    instance: ansible_centos7_server
-    address: 192.168.21.134
-    user: ansible
-    password: ansible
+  - name: centos8
+    image: memoryleak/molecule:centos8
+    pre_build_image: true
 
-  - name: ansible_centos8stream_server
-    instance: ansible_centos8stream_server
-    address: 192.168.21.74
-    user: ansible
-    password: ansible
+  - name: centos7
+    image: memoryleak/molecule:centos7
+    pre_build_image: true
 
-  - name: ansible_fedora34_server
-    instance: ansible_fedora34_server
-    address: 192.168.21.38
-    user: ansible
-    password: ansible
+  - name: focal
+    image: memoryleak/molecule:focal
+    pre_build_image: true
 
-  - name: ansible_rhel7_server
-    instance: ansible_rhel7_server
-    address: 192.168.21.146
-    user: ansible
-    password: ansible
-
-  - name: ansible_rhel8_server
-    instance: ansible_rhel8_server
-    address: 192.168.21.36
-    user: ansible
-    password: ansible
-
-  - name: ansible_ubuntu1804_server
-    instance: ansible_ubuntu1804_server
-    address: 192.168.21.106
-    user: ansible
-    password: ansible
-
-  - name: ansible_ubuntu2004_server
-    instance: ansible_ubuntu2004_server
-    address: 192.168.21.73
-    user: ansible
-    password: ansible
+  - name: bionic
+    image: memoryleak/molecule:bionic
+    pre_build_image: true
 
 provisioner:
   name: ansible

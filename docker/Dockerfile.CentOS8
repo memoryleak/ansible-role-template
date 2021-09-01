@@ -1,0 +1,2 @@
+FROM centos:8
+RUN dnf update -y && dnf upgrade -y && dnf install -y python3
