@@ -1,0 +1,27 @@
+---
+- name: Fail if molecule group is missing
+  hosts: localhost
+  tasks:
+    - name: Print group information
+      ansible.builtin.debug:
+        msg: "{{ groups }}"
+        verbosity: 1
+
+    - name: Assert group existence
+      ansible.builtin.assert:
+        that: "'molecule' in groups"
+        quiet: True
+        fail_msg: |
+          molecule group was not found inside inventory groups: {{ groups }}
+
+- name: Converge
+  hosts: molecule
+  gather_facts: true
+  tasks:
+    - name: "Include nudorm.template"
+      ansible.builtin.include_role:
+        name: "nudorm.template2"
+      tags:
+        - ansible
+        - builtin
+        - include_role

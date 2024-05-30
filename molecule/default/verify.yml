@@ -1,0 +1,10 @@
+---
+- name: Converge
+  hosts: molecule
+  tasks:
+    - name: Verification process
+      ansible.builtin.debug:
+        msg: "Verification tasks"
+        verbosity: 1
+      tags:
+        - debug

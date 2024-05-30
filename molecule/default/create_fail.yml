@@ -1,0 +1,21 @@
+---
+- name: Print statements during execution
+  ansible.builtin.debug:
+    var: result
+  tags:
+    - debug
+- name: Retrieve container log
+  ansible.builtin.command:
+    cmd: >-
+      {% raw %}
+      docker logs
+      {% endraw %}
+      {{ item.item.name }}
+  changed_when: false
+  register: logfile_cmd
+
+- name: Display container log
+  ansible.builtin.fail:
+    msg:
+      - "Failed to create container: {{ item.container.Config.Image }}"
+      - "{{ logfile_cmd }}"

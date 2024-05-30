@@ -1,0 +1,77 @@
+---
+- name: Create
+  hosts: localhost
+  gather_facts: false
+  vars:
+    molecule_inventory:
+      all:
+        vars:
+          ansible_connection: community.docker.docker
+        hosts: {}
+      molecule:
+        hosts: {}
+  tasks:
+    - name: Create docker container
+      community.docker.docker_container:
+        auto_remove: "{{ molecule_platform.auto_remove | default(omit) }}"
+        command: "{{ molecule_platform.command | default(omit) }}"
+        detach: "{{ molecule_platform.detach | default(omit) }}"
+        entrypoint: "{{ molecule_platform.entrypoint | default(omit) }}"
+        env: "{{ molecule_platform.env | default(omit) }}"
+        image: "{{ molecule_platform.image | default(omit) }}"
+        name: "{{ molecule_platform.name | default(omit) }}"
+        privileged: "{{ molecule_platform.privileged | default(omit) }}"
+        pull: "{{ molecule_platform.pull | default(omit) }}"
+        state: "{{ molecule_platform.state | default('started') }}"
+      tags:
+        - community
+        - docker
+        - docker_container
+      register: result
+      loop: "{{ molecule_yml.platforms }}"
+      loop_control:
+        loop_var: molecule_platform
+
+    - name: Fail if container is not running
+      when: >
+        item.container.State.ExitCode != 0 or
+        not item.container.State.Running
+      ansible.builtin.include_tasks:
+        file: create_fail.yml
+      loop: "{{ result.results }}"
+      loop_control:
+        label: "{{ item.container.Name }}"
+
+    - name: Add container to molecule_inventory
+      vars:
+        inventory_partial_yaml: |
+          all:
+            hosts:
+              "{{ item.name }}": {}
+          molecule:
+            hosts:
+              "{{ item.name }}": {}
+      ansible.builtin.set_fact:
+        molecule_inventory: >
+          {{ molecule_inventory | combine(inventory_partial_yaml | from_yaml, recursive=true) }}
+      loop: "{{ molecule_yml.platforms }}"
+      loop_control:
+        label: "{{ item.name }}"
+
+    - name: Dump molecule_inventory
+      ansible.builtin.copy:
+        content: |
+          {{ molecule_inventory | to_nice_yaml }}
+        dest: "{{ molecule_ephemeral_directory }}/inventory/molecule_inventory.yml"
+        mode: "0600"
+
+    - name: Force inventory refresh
+      ansible.builtin.meta: refresh_inventory
+
+    - name: Fail if molecule group is missing
+      ansible.builtin.assert:
+        quiet: True
+        that: "'molecule' in groups"
+        fail_msg: |
+          molecule group was not found inside inventory groups: {{ groups }}
+      run_once: true

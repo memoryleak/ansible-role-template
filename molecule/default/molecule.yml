@@ -1,0 +1,19 @@
+---
+driver:
+  name: default
+dependency:
+  name: galaxy
+  options:
+    requirements-file: requirements.yml
+platforms:
+  - name: molecule-ubuntu
+    image: docker.io/memoryleak/systemd:ubuntu
+    privileged: true
+
+  - name: molecule-debian
+    image: docker.io/memoryleak/systemd:debian
+    privileged: true
+
+  - name: molecule-fedora
+    image: docker.io/memoryleak/systemd:fedora
+    privileged: true

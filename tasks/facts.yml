@@ -1,0 +1,6 @@
+---
+- name: Set host variable(s) and fact(s)
+  ansible.builtin.set_fact:
+    my_key: "my value"
+  tags:
+    - set_fact

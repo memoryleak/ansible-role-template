@@ -1,0 +1,21 @@
+---
+- name: Import vars task
+  ansible.builtin.import_tasks: "vars.yml"
+  tags:
+    - import_tasks
+
+- name: Import facts task
+  ansible.builtin.import_tasks: "facts.yml"
+  tags:
+    - import_tasks
+
+- name: Import inclusion task
+  ansible.builtin.import_tasks: "include.yml"
+  tags:
+    - import_tasks
+
+- name: Print variable
+  ansible.builtin.debug:
+    var: my_custom_var
+  tags:
+    - debug

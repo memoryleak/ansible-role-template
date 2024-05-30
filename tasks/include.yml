@@ -1,0 +1,29 @@
+---
+# Include tasks based on different criteria
+- name: Include tasks based on system
+  ansible.builtin.include_tasks: "{{ tasks_file }}"
+  with_fileglob:
+    - "tasks/*-{{ ansible_system }}.yml"
+  loop_control:
+    loop_var: tasks_file
+
+- name: Include tasks based on os family
+  ansible.builtin.include_tasks: "{{ tasks_file }}"
+  with_fileglob:
+    - "tasks/*-{{ ansible_os_family }}.yml"
+  loop_control:
+    loop_var: tasks_file
+
+- name: Include tasks based on distribution
+  ansible.builtin.include_tasks: "{{ tasks_file }}"
+  with_fileglob:
+    - "tasks/*-{{ ansible_distribution }}.yml"
+  loop_control:
+    loop_var: tasks_file
+
+- name: Include tasks based on distribution version
+  ansible.builtin.include_tasks: "{{ tasks_file }}"
+  with_fileglob:
+    - "tasks/*-{{ ansible_distribution }}-{{ ansible_distribution_major_version }}.yml"
+  loop_control:
+    loop_var: tasks_file
